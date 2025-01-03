@@ -18,15 +18,17 @@ export default function Answers({answers, selectedAnswer, answerState, onSelect}
                     cssClasses = 'selected';
                 }
 
-                if(answerState === 'correct' || answerState === 'wrong' && isSelected){
+                if(answerState === 'correct' && isSelected || answerState === 'wrong' && isSelected){
                     cssClasses = answerState;
                 }
 
-                return <li key={answer} className="answer">
-                            <button onClick={() => onSelect(answer)} className={cssClasses}>
-                                {answer}
-                            </button>
-                        </li>
+                return (
+                    <li key={answer} className="answer">
+                        <button onClick={() => onSelect(answer)} className={cssClasses} disabled={answerState !== ''}>
+                            {answer}
+                        </button>
+                    </li>
+                );
             })}
         </ul>
     );
